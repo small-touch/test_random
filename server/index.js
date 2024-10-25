@@ -31,6 +31,52 @@ app.post('/api/upload', upload.single('file'), (req, res) => {
   res.send({ message: 'File uploaded successfully!', file: req.file });
 });
 
+// 获取菜谱接口
+app.get('/api/dishes', (req, res) => {
+  res.status(200).send({
+    message: '获取菜谱成功',
+    data: [
+      { name: '麻辣烫', id: 1 },
+      { name: '内江鲜烧牛肉', id: 2 },
+      { name: '火锅', id: 3 },
+      { name: '内江牛肉面', id: 4 },
+      { name: '兔子面', id: 5 },
+      { name: '奶茶', id: 6 },
+      { name: '鲜锅兔', id: 7 },
+      { name: '资中鲶鱼', id: 8 },
+      { name: '毛血旺', id: 9 },
+      { name: '串串', id: 10 },
+      { name: '无骨鸡爪', id: 11 },
+      { name: '大千千烧鱼', id: 12 },
+      { name: '宫保鸡丁', id: 13 },
+      { name: '麻婆豆腐', id: 14 },
+      { name: '鱼香肉丝', id: 15 },
+      { name: '糖醋里脊', id: 16 },
+      { name: '红烧肉', id: 17 },
+      { name: '水煮鱼', id: 18 },
+      { name: '辣子鸡', id: 19 },
+      { name: '回锅肉', id: 20 },
+      { name: '东坡肉', id: 21 },
+      { name: '酸菜鱼', id: 22 },
+      { name: '土豆肉丝', id: 23 },
+      { name: '酸辣土豆丝', id: 24 },
+      { name: '梅菜扣肉', id: 25 },
+      { name: '土豆炖牛腩', id: 26 },
+      { name: '袁记云饺', id: 27 },
+      { name: '曹氏', id: 28 },
+      { name: '葱爆羊肉', id: 29 },
+      { name: '蒜蓉虾', id: 30 },
+      { name: '青椒肉丝', id: 31 },
+      { name: '西红柿炒蛋', id: 32 },
+      { name: '红烧排骨', id: 33 },
+      { name: '烧烤', id: 34 },
+      { name: '肯德基', id: 35 },
+      { name: '塔斯汀汉堡', id: 36 },
+      { name: '柴火鸡', id: 37 }
+    ]
+  })
+})
+
 // 启动服务器
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);

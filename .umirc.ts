@@ -1,10 +1,10 @@
 import { defineConfig } from '@umijs/max';
 
 export default defineConfig({
-  // history: {
-  //   type: 'browser',
-  // },
-  // publicPath: '/test_random/',
+  history: {
+    type: 'hash',
+  },
+  publicPath: '/test_random/',
   antd: {},
   access: {},
   model: {},
@@ -17,13 +17,15 @@ export default defineConfig({
     {
       path: '/',
       redirect: '/dishes',
+      layout: false,
     },
     {
-      name: '菜谱',
       path: '/dishes',
       component: './Dishes',
-      layout: false
+      name: '菜谱',
+      layout: false,
     },
+    
     // {
     //   path: '/',
     //   component: '@/layouts',
@@ -62,7 +64,7 @@ export default defineConfig({
     //     },
     //   ]
     // },
-    { path: '/*', component: './404', layout: false },
+    // { path: '/*', component: './404', layout: false },
   ],
   npmClient: 'pnpm',
   proxy: {
