@@ -10,14 +10,9 @@ interface DishType {
 }
 const Dishes = () => {
     const [result, setResult] = useState('点击按钮开始选择');
-    const [fadeIn, setFadeIn] = useState(false);
     const [data, setData] = useState<DishType[]>([]);
     const [inputVal, setInputVal] = useState('');
     const [loading, setLoading] = useState(false);
-
-    useEffect(() => {
-        setFadeIn(true);
-    }, [result]);
 
     // 请求菜谱数据
     const getDishes = async () => {
@@ -30,7 +25,6 @@ const Dishes = () => {
     }, []);
 
     const selectRandomDish = () => {
-        setFadeIn(false);
         const randomDish = data[Math.floor(Math.random() * data.length)];
         if (!randomDish) return;
         setTimeout(() => {
@@ -75,7 +69,7 @@ const Dishes = () => {
     return (
         <div className={styles.container}>
             <h1>随机点菜工具</h1>
-            <div className={styles.result} style={{ opacity: fadeIn ? '1' : '0' }}>{result}</div>
+            <div className={styles.result}>{result}</div>
             <Button className={styles.selectButton} type="primary" onClick={selectRandomDish}>随机选择</Button>
             <div className={styles.inputContainer}>
                 <Input value={inputVal} placeholder='请输入' onChange={changeInput} />
