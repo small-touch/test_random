@@ -25,7 +25,7 @@ const Dishes = () => {
 
     const deleteDish = (item: string) => {
         console.log(item);
-        demo = demo?.filter((dish) => dish !== item);
+        // demo = demo?.filter((dish) => dish !== item);
     };
     return (
         <div className={styles.container}>
