@@ -32,6 +32,7 @@ const Dishes = () => {
     const selectRandomDish = () => {
         setFadeIn(false);
         const randomDish = data[Math.floor(Math.random() * data.length)];
+        if (!randomDish) return;
         setTimeout(() => {
             setResult(`今天吃：${randomDish?.name}`);
         }, 200);
