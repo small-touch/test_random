@@ -1,6 +1,10 @@
 import { defineConfig } from '@umijs/max';
 
 export default defineConfig({
+  history: {
+    type: 'browser',
+  },
+  publicPath: '/test_random/',
   antd: {},
   access: {},
   model: {},
