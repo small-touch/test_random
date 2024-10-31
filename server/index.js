@@ -8,10 +8,20 @@ import dishRoute from './routes/dishes.js';
 
 // 创建 Express 应用
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
 // 使用 CORS 中间件
-app.use(cors());
+const whitelist = ['https://small-touch.github.io', 'http://localhost:8001']; // 允许的域名列表
+const corsOptions = {
+  origin: function (origin, callback) {
+    if (whitelist.indexOf(origin) !== -1) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  }
+};
+app.use(cors(corsOptions));
 app.use(express.json());
 app.use(bodyParser.json());
 
@@ -40,16 +50,13 @@ const upload = multer({ storage });
 // 定义上传接口
 app.post('/api/upload', upload.single('file'), (req, res) => {
   if (!req.file) {
-    return res.status(400).send({ error: 'No file uploaded.' });
+    return res.status(400).send({ error: '没有文件可上传' });
   }
-  res.send({ message: 'File uploaded successfully!', file: req.file });
+  res.send({ message: '文件上传成功!', file: req.file });
 });
 
 
-// 获取菜谱接口
-// app.get('/api/dishes', async (req, res) => {
-//   res.status(200).send({
-//     message: '获取菜谱成功',
+
 //     data: [
 //       { name: '麻辣烫', id: 1 },
 //       { name: '内江鲜烧牛肉', id: 2 },
@@ -89,7 +96,5 @@ app.post('/api/upload', upload.single('file'), (req, res) => {
 //       { name: '塔斯汀汉堡', id: 36 },
 //       { name: '柴火鸡', id: 37 }
 //     ]
-//   })
-// })
 
 app.use('/api/dishes', dishRoute);
