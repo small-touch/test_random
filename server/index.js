@@ -5,10 +5,11 @@ import cors from 'cors';
 import mongoose from "mongoose";
 import bodyParser from 'body-parser';
 import dishRoute from './routes/dishes.js';
+// import { createProxyMiddleware } from 'http-proxy-middleware';
 
 // 创建 Express 应用
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = 3000;
 
 // 使用 CORS 中间件
 // const whitelist = ['https://small-touch.github.io', 'http://localhost:8001']; // 允许的域名列表
@@ -22,7 +23,16 @@ const PORT = process.env.PORT || 3000;
 //     }
 //   }
 // };
-app.use(cors());
+
+// app.use('/', createProxyMiddleware({
+//   target: 'http://localhost:3000', // 你的本地后端服务地址
+//   changeOrigin: true,
+//   secure: false, // 允许转发到不安全的 HTTP 服务
+// }));
+
+app.use(cors({
+  origin: '*', // 允许所有来源
+}));
 app.use(express.json());
 app.use(bodyParser.json());
 
