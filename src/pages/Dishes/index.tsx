@@ -16,7 +16,7 @@ const Dishes = () => {
 
     // 请求菜谱数据
     const getDishes = async () => {
-        const res = await axios.get('http://localhost:3000/api/dishes/getAllDishes');
+        const res = await axios.get('http://192.168.32.66:3000/api/dishes/getAllDishes');
         setData(res?.data?.data);
     };
 
@@ -35,7 +35,7 @@ const Dishes = () => {
     // 删除菜谱数据
     const deleteDish = async (item: DishType) => {
         try {
-            const res = await axios.post('http://localhost:3000/api/dishes/deleteDish', { name: item?.name });
+            const res = await axios.post('http://192.168.32.66:3000/api/dishes/deleteDish', { name: item?.name });
             if (res.data?.code === 200) {
                 message.success('删除成功');
                 getDishes();
@@ -50,7 +50,7 @@ const Dishes = () => {
         setLoading(true);
         if (!inputVal) return;
         try {
-            const res = await axios.post('http://localhost:3000/api/dishes/addDishes', { name: inputVal });
+            const res = await axios.post('http://192.168.32.66:3000/api/dishes/addDishes', { name: inputVal });
             if (res.data?.code === 200) {
                 setLoading(false);
                 message.success('添加成功');
