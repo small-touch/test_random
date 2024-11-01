@@ -5,6 +5,7 @@ import cors from 'cors';
 import mongoose from "mongoose";
 import bodyParser from 'body-parser';
 import dishRoute from './routes/dishes.js';
+import { createProxyMiddleware } from 'http-proxy-middleware';
 
 // 创建 Express 应用
 const app = express();
@@ -22,6 +23,13 @@ const PORT = 3000;
 //     }
 //   }
 // };
+
+// app.use('/api/dishes', createProxyMiddleware({ 
+//   // target: 'http://192.168.32.66:3000', // 你的本地服务器地址
+//   target: 'http://localhost:3000', // 你的本地服务器地址
+//   changeOrigin: true,
+//   secure: false, // 关闭证书验证
+// }));
 
 
 app.use(cors());

@@ -69,8 +69,8 @@ export default defineConfig({
   npmClient: 'pnpm',
   proxy: {
     '/api': {
-      // 'target': 'http://localhost:3000',
-      'target': 'http://192.168.32.66:3000',
+      'target': 'http://localhost:3000',
+      // 'target': 'http://192.168.32.66:3000',
       'changeOrigin': true,
       'pathRewrite': { '^/api': '' },
     }

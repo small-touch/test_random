@@ -9,7 +9,8 @@ interface DishType {
     id: number;
 }
 
-axios.defaults.baseURL = 'http://192.168.32.66:3000';
+// axios.defaults.baseURL = 'http://192.168.32.66:3000';
+axios.defaults.baseURL = 'http://localhost:3000';
 const Dishes = () => {
     const [result, setResult] = useState('点击按钮开始选择');
     const [data, setData] = useState<DishType[]>([]);
