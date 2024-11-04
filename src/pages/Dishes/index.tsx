@@ -10,7 +10,8 @@ interface DishType {
 }
 
 // axios.defaults.baseURL = 'http://192.168.32.66:3000';
-axios.defaults.baseURL = 'http://localhost:3000';
+axios.defaults.baseURL = 'http://localhost:3000/';
+// axios.defaults.baseURL = 'http://47.108.233.244:80/';
 const Dishes = () => {
     const [result, setResult] = useState('点击按钮开始选择');
     const [data, setData] = useState<DishType[]>([]);
@@ -51,12 +52,16 @@ const Dishes = () => {
     // 新增菜谱数据
     const addDish = async () => {
         setLoading(true);
-        if (!inputVal) return;
+        if (!inputVal) {
+            setLoading(false);
+            return message.error('请输入菜品名称');
+        };
         try {
             const res = await axios.post('/api/dishes/addDishes', { name: inputVal });
             if (res.data?.code === 200) {
                 setLoading(false);
                 message.success('添加成功');
+                setInputVal('');
                 getDishes();
             }
         } catch (error: any) {

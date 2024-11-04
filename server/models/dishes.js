@@ -5,6 +5,11 @@ const dishSchema = new mongoose.Schema({
         type: String,
         required: true,
         default: '',
+    },
+    id: {
+        type: String,
+        required: false,
+        default: ''
     }
 });
 

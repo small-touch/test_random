@@ -10,7 +10,8 @@
     "prepare": "husky",
     "setup": "max setup",
     "start": "npm run dev",
-    "deploy": "npm run build && gh-pages -d dist"
+    "deploy": "npm run build && gh-pages -d dist",
+    "node": "nodemon ./server/index.js"
   },
   "dependencies": {
     "@ant-design/icons": "^5.0.1",
@@ -25,7 +26,9 @@
     "http-proxy-middleware": "^3.0.3",
     "mongoose": "^8.7.2",
     "multer": "1.4.5-lts.1",
-    "react-easy-crop": "^5.0.8"
+    "nodemon": "^3.1.7",
+    "react-easy-crop": "^5.0.8",
+    "uuid": "^11.0.2"
   },
   "devDependencies": {
     "@types/react": "^18.0.33",
