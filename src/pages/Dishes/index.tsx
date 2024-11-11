@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Button, Input, message } from 'antd';
 import { CloseOutlined } from '@ant-design/icons';
 import axios from 'axios';
@@ -13,10 +13,12 @@ interface DishType {
 axios.defaults.baseURL = 'http://localhost:3000/';
 // axios.defaults.baseURL = 'http://47.108.233.244:80/';
 const Dishes = () => {
+    const timer = useRef(null);
     const [result, setResult] = useState('点击按钮开始选择');
     const [data, setData] = useState<DishType[]>([]);
     const [inputVal, setInputVal] = useState('');
     const [loading, setLoading] = useState(false);
+    const [currentColor, setCurrentColor] = useState('#000');
 
     // 请求菜谱数据
     const getDishes = async () => {
@@ -74,6 +76,20 @@ const Dishes = () => {
         setInputVal(e.target.value);
     };
 
+    function generateRandomColor() {
+        var randomColor = '#'+(Math.random()*0xFFFFFF<<0).toString(16);
+        return randomColor;
+    }
+
+    useEffect(() => {
+        timer.current = setInterval(() => {
+            setCurrentColor(generateRandomColor());
+        }, 300);
+        return () => {
+            timer.current = null;
+        }
+    }, []);
+
     return (
         <div className={styles.container}>
             <h1>随机点菜工具</h1>
@@ -88,6 +104,7 @@ const Dishes = () => {
                     return <div className={styles.menuItem} key={index}>{item?.name} <CloseOutlined onClick={() => deleteDish(item)} className={styles.close} /></div>
                 })}
             </div>
+            <p className={styles.tip} style={{ color: currentColor }}>人是铁，饭是钢，一顿不吃饿的慌！</p>
         </div>
     );
 };
